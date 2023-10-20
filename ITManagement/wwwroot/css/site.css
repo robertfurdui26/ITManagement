@@ -1,0 +1,26 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    
+
+
+    background-image: url(../bg-images/orangeBG.jpg);
+    background-size: cover; /* Face imaginea s? acopere complet fundalul */
+    background-repeat: no-repeat; /* Previne repetarea imaginii */
+    background-attachment: fixed; /* Face imaginea s? r?mân? fixat? pe ecran */
+    background-position: center center; /* Aliniaz? imaginea în centru */
+}
