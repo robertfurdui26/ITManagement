@@ -16,9 +16,6 @@ namespace ITManagement.Repository
             dbSet = _db.Set<T>();
             _db.Employees.Include(u => u.Departament).Include(u => u.DepartamentId);
         }
-
-
-
         public void Add(T entity)
         {
             dbSet.Add(entity);
@@ -28,8 +25,6 @@ namespace ITManagement.Repository
         {
             if (tracked)
             {
-
-
                 IQueryable<T> query = dbSet;
                 query = query.Where(filter);
                 if (!string.IsNullOrEmpty(includeProperties))

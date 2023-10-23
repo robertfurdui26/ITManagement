@@ -14,7 +14,19 @@ namespace ITManagement.Repository
 
         void IProjectsRepository.Update(Project obj)
         {
-            _db.Projects.Update(obj);
+            var objFromDb = _db.Projects.FirstOrDefault(u =>u.Id == obj.Id);
+            if (objFromDb != null)
+            {
+                objFromDb.Name = obj.Name;
+                objFromDb.Description = obj.Description;
+                objFromDb.FinishProject = obj.FinishProject;
+                objFromDb.EmployeeId = obj.EmployeeId;
+                if(obj.ImageUrl != null)
+                {
+                    objFromDb.ImageUrl = obj.ImageUrl;
+                }
+
+            }
         }
     }
 }
