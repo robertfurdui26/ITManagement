@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace ITManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
     public class ProjectsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -18,7 +17,6 @@ namespace ITManagement.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
-
         }
         public IActionResult ShowProjects()
         {
@@ -42,16 +40,13 @@ namespace ITManagement.Areas.Admin.Controllers
 
             if (id == null || id == 0)
             {
-                //create
                 return View(projectVM);
             }
-            //update
             projectVM.Project = _unitOfWork.Projects.Get(u => u.Id == id);
             return View(projectVM);
         }
 
         [HttpPost]
-
         public IActionResult Upsert(ProjectVM projectVM, IFormFile? file)
         {
             if (ModelState.IsValid)
@@ -70,7 +65,6 @@ namespace ITManagement.Areas.Admin.Controllers
                             System.IO.File.Delete(oldPath);
                         }
                     }
-
                     using (var fileStream = new FileStream(Path.Combine(employeePath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
@@ -87,7 +81,6 @@ namespace ITManagement.Areas.Admin.Controllers
                 {
                     _unitOfWork.Projects.Update(projectVM.Project);
                 }
-
                 _unitOfWork.Save();
                 TempData["success"] = "Employee created successfully!";
                 return RedirectToAction("ShowProjects");
@@ -101,12 +94,7 @@ namespace ITManagement.Areas.Admin.Controllers
                 });
                 return View(projectVM);
             }
-
-
-
         }
-
-
 
         #region API CALLS
 

@@ -32,8 +32,6 @@ namespace ITManagement.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult CreateDepartament(Departament departamentObj)
         {
-
-
             if (ModelState.IsValid)
             {
                 _unitOfWork.Departament.Add(departamentObj);
@@ -42,7 +40,6 @@ namespace ITManagement.Areas.Admin.Controllers
 
                 return RedirectToAction("ShowDepartament");
             }
-
             return View();
         }
 
@@ -58,12 +55,10 @@ namespace ITManagement.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             return View(departamentDb);
         }
 
         [HttpPost]
-
         public IActionResult EditDepartament(Departament departament)
         {
             if (!ModelState.IsValid)
@@ -82,7 +77,6 @@ namespace ITManagement.Areas.Admin.Controllers
         }
 
         [HttpGet]
-
         public IActionResult DeleteDepartament(int? id)
         {
             if (id == null || id == 0)

@@ -7,19 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace ITManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
     public class TeamController : Controller
     {
-
-
         private readonly IUnitOfWork _unitOfWork;
 
         public TeamController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-
-
         public IActionResult ShowTeam()
         {
             var teamDb = _unitOfWork.Team.GetAll().ToList();
@@ -114,9 +109,6 @@ namespace ITManagement.Areas.Admin.Controllers
             _unitOfWork.Save();
             TempData["success"] = "Team deleted succesfuly";
             return RedirectToAction("ShowTeam");
-
         }
-
-
     }
 }

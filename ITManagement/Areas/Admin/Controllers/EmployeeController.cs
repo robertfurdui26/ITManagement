@@ -10,14 +10,12 @@ namespace ITManagement.Areas.Admin.Controllers
 
     public class EmployeeController : Controller
     {
-
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;
         public EmployeeController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
-
         }
         public IActionResult ShowEmployee()
         {
@@ -40,16 +38,13 @@ namespace ITManagement.Areas.Admin.Controllers
 
             if (id == null || id == 0)
             {
-                //create
                 return View(employeeVM);
             }
-            //update
             employeeVM.Employee = _unitOfWork.Employee.Get(u => u.Id == id);
             return View(employeeVM);
         }
 
         [HttpPost]
-
         public IActionResult Upsert(EmployeeVM employeeVM, IFormFile? file)
         {
             if (ModelState.IsValid)
@@ -99,9 +94,6 @@ namespace ITManagement.Areas.Admin.Controllers
                 });
                 return View(employeeVM);
             }
-
-
-
         }
 
         #region API CALLS
@@ -114,7 +106,6 @@ namespace ITManagement.Areas.Admin.Controllers
         }
 
         [HttpDelete]
-
         public IActionResult Delete(int? id)
         {
             var employeeDeleted = _unitOfWork.Employee.Get(u => u.Id == id);
