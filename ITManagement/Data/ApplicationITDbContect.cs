@@ -1,9 +1,11 @@
 ﻿using ITManagement.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITManagement.Data
 {
-    public class ApplicationITDbContect : DbContext
+    public class ApplicationITDbContect : IdentityDbContext<IdentityUser>
     {
         public ApplicationITDbContect(DbContextOptions options) : base(options)
         {
@@ -17,11 +19,6 @@ namespace ITManagement.Data
         public DbSet<Team> Teams { get; set; }
 
         public DbSet<Project> Projects { get; set; }
-
-
-
-
-
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
