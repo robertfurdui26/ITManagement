@@ -17,11 +17,7 @@ namespace ITManagement.Areas.Workers.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
-        {
-            var projectList = _unitOfWork.Projects.GetAll(includeProperties:"Employee").ToList();
-            return View(projectList);
-        }
+       
 
         public IActionResult Privacy()
         {

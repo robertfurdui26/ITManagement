@@ -23,6 +23,12 @@ namespace ITManagement.Areas.Admin.Controllers
             return View(employeeeDb);
         }
 
+        public IActionResult ShowEmployeeAdmin()
+        {
+            var employeeList = _unitOfWork.Employee.GetAll(includeProperties: "Departament").ToList();
+            return View(employeeList);
+        }
+
         [HttpGet]
         public IActionResult Upsert(int? id)
         {

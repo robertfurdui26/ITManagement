@@ -24,6 +24,12 @@ namespace ITManagement.Areas.Admin.Controllers
             return View(projectsDb);
         }
 
+        public IActionResult ShowProjectsAdmin()
+        {
+            var projectList = _unitOfWork.Projects.GetAll(includeProperties: "Employee").ToList();
+            return View(projectList);
+        }
+
 
         [HttpGet]
         public IActionResult Upsert(int? id)
