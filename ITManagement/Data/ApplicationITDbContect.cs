@@ -16,6 +16,8 @@ namespace ITManagement.Data
 
         public DbSet<Employee> Employees { get; set; }
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
         public DbSet<Team> Teams { get; set; }
 
         public DbSet<Project> Projects { get; set; }

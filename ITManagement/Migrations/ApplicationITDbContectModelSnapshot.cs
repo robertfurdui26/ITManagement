@@ -136,7 +136,7 @@ namespace ITManagement.Migrations
                             City = "Sebes",
                             Country = "Roumania",
                             DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfHire = new DateTime(2023, 10, 24, 23, 9, 37, 145, DateTimeKind.Local).AddTicks(7211),
+                            DateOfHire = new DateTime(2023, 10, 26, 21, 44, 51, 801, DateTimeKind.Local).AddTicks(6231),
                             DepartamentId = 1,
                             Email = "rfurdui26@gmail.com",
                             FirstName = "Robert",
@@ -154,7 +154,7 @@ namespace ITManagement.Migrations
                             City = "Sibiu",
                             Country = "Roumania",
                             DateOfBirth = new DateTime(2002, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfHire = new DateTime(2023, 10, 24, 23, 9, 37, 145, DateTimeKind.Local).AddTicks(7258),
+                            DateOfHire = new DateTime(2023, 10, 26, 21, 44, 51, 801, DateTimeKind.Local).AddTicks(6350),
                             DepartamentId = 2,
                             Email = "mihaiachi26@gmail.com",
                             FirstName = "Mihai",
@@ -172,7 +172,7 @@ namespace ITManagement.Migrations
                             City = "LogoRados",
                             Country = "Armenia",
                             DateOfBirth = new DateTime(2000, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfHire = new DateTime(2023, 10, 24, 23, 9, 37, 145, DateTimeKind.Local).AddTicks(7262),
+                            DateOfHire = new DateTime(2023, 10, 26, 21, 44, 51, 801, DateTimeKind.Local).AddTicks(6357),
                             DepartamentId = 3,
                             Email = "hank26@gmail.com",
                             FirstName = "Jhon",
@@ -323,6 +323,10 @@ namespace ITManagement.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -374,6 +378,10 @@ namespace ITManagement.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -459,6 +467,29 @@ namespace ITManagement.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("ITManagement.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("ITManagement.Models.Employee", b =>
